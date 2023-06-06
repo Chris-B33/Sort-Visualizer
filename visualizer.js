@@ -104,7 +104,7 @@ async function swap(pos1, pos2, del) {
 function playSound(hz) {
     let hertz = parseFloat(hz);
     if (pipe_switch.checked) {
-        pipe.play();
+        pipe.cloneNode().play();
     } else if (isFinite(hertz)) {
         let interval = (SOUND_UPPER_BOUND - SOUND_LOWER_BOUND) / array.length;
         hertz = SOUND_LOWER_BOUND + (hertz * interval);
@@ -364,7 +364,6 @@ async function merge_arrays(start, middle, end) {
 
     arr = [ ...arr, ...left, ...right]
 
-    console.log("this is arr: ", arr)
     for (let k=start; k<=end; k++) {
         states[k] = 0;
         array[k] = arr.shift();
