@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sort Visualizer </title>
+        <link href="style.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="container">
+            <h1>Chris' Sorting Visualizer</h1>
+            <p>To highlight the efficiency (and inefficiency) of different sorting algorithms</p>
+            <div class="interact-container">
+                <div class="misc-area">
+                    <button onclick="resetArray()">Reset / Randomize</button>
+                    <div class="slider-container">
+                        <h4>Array Size</h4>
+                        <input type="range" min="7" max="256" value="64" class="slider" id="slider">
+                        <div id="slider-value">   </div>
+                    </div>
+                    <div class="rainbow-container">
+                        <h5>Rainbow</h5>
+                        <label class="switch">
+                            <input id="rainbow-switch" type="checkbox">
+                          </label>
+                    </div>
+                    <div class="pipe-container">
+                        <h5>Pipe</h5>
+                        <label class="switch">
+                            <input id="pipe-switch" type="checkbox">
+                          </label>
+                    </div>
+                </div>
+                <div class="slow buttons">
+                    <h3>Slow</h3>
+                    <button onclick="bubbleSort()">Bubble</button>
+                    <button onclick="cocktailSort()">Cocktail</button>
+                </div>
+                <div class="medium buttons">
+                    <h3>Medium</h3>
+                    <button onclick="insertionSort()">Insertion</button>
+                    <button onclick="selectionSort()">Selection</button>
+                    
+                </div>
+                <div class="fast buttons">
+                    <h3>Fast</h3>
+                    <button onclick="mergeSort()">Merge</button>
+                    <button onclick="quickSort()">Quick</button>
+                </div>
+            </div>
+
+            <div class="screen-container">
+                <canvas id="screen"></canvas>
+            </div>
+        </div>
+        <script src="visualizer.js"></script>
+    </body>
+</html>
