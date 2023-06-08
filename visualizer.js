@@ -317,7 +317,7 @@ async function quick_sort(start, end) {
   }
 
 
-  async function mergeSort() {
+async function mergeSort() {
     if (sorting) {return}
     await startSort();
 
@@ -370,4 +370,156 @@ async function merge_arrays(start, middle, end) {
         await delay(SORT_TIME / (array.length * Math.log2(array.length)));
         states[k] = -1;
     }
+}
+
+async function radixSort() {
+    if (sorting) {return}
+    await startSort();
+
+    if (!isSorted()) {
+        await radix_sort();
+    }
+
+    await showSorted();
+    await endSort();
+}
+
+async function radix_sort() {
+    let maxDigitCount = mostDigits(array)
+    for (let k = 0; k < maxDigitCount; k++) {
+        let digitBuckets = Array.from({ length: 10 }, () => [])
+        for (let i = 0; i < array.length; i++) {
+            let digit = getDigit(array[i], k)
+            digitBuckets[digit].push(array[i])
+        }
+
+        arr = [].concat(...digitBuckets)
+        for (let k=0; k<array.length; k++) {
+            states[k] = 0;
+            array[k] = arr.shift();
+            await delay(SORT_TIME / (maxDigitCount * (array.length + 10)));
+            states[k] = -1;
+        }
+    }
+}
+
+function mostDigits(nums) {
+    let maxDigits = 0
+    for (let i = 0; i < nums.length; i++) {
+      maxDigits = Math.max(maxDigits, digitCount(nums[i]))
+    }
+    return maxDigits
+}
+
+function digitCount(num) {
+    if (num === 0) return 1
+    return Math.floor(Math.log10(Math.abs(num))) + 1
+}
+
+function getDigit(num, place) {
+    return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10
+}
+
+async function bucketSort() {
+    if (sorting) {return}
+    await startSort();
+
+    if (!isSorted()) {
+        await bucket_sort(Math.floor(Math.sqrt(array.length)));
+    }
+
+    await showSorted();
+    await endSort();
+}
+  
+async function bucket_sort(bs) {
+    var minIndex = array[0];
+    var maxIndex = array[0];
+    var bucketSize = bs || 5;
+
+    for (let i=0; i<array.length; i++) {
+        states[i] = 0;
+        states[minIndex] = 0;
+        states[maxIndex] = 0;
+
+        if (array[i] < array[minIndex]) {
+            states[minIndex] = -1;
+            minIndex = i;
+        } else if (array[i] > array[maxIndex]) {
+            states[maxIndex] = -1;
+            maxIndex = i
+        }
+        
+        await delay(1);
+
+        states[i] = -1;
+        states[minIndex] = -1;
+        states[maxIndex] = -1;
+    }
+  
+    var bucketCount = Math.floor((array[maxIndex] - array[minIndex]) / bucketSize) + 1;
+    var allBuckets = new Array(bucketCount);
+    
+    for (let j = 0; j < allBuckets.length; j++) {
+      allBuckets[j] = [];
+    }
+
+    array.forEach(function (currentVal) {
+        allBuckets[Math.floor((currentVal - array[minIndex]) / bucketSize)].push(currentVal);
+    });
+
+    count = 0;
+    for (let k=0; k<allBuckets.length; k++) {
+        for (let l=0; l<allBuckets[k].length; l++) {
+            states[count] = 0;
+
+            array[count] = allBuckets[k][l];
+
+            await delay(Math.floor(SORT_TIME / Math.pow((array.length + bucketCount), 2)));
+            states[count] = -1;
+            count++;
+        }
+    }
+    
+    var start = 0, end = bucketSize;
+    for (let m=0; m<allBuckets.length - 1; m++) {
+        await insertionSort2(start, end)
+        start += allBuckets[m].length;
+        end += allBuckets[m+1].length;
+    }
+    await insertionSort2(start, end);
+}
+
+async function insertionSort2(start, end) {
+    for (let i=start; i<end; i++) {
+        for (let j=start; j<i; j++) {
+            if (array[i] < array[j]) {
+                await swap(i, j, Math.floor(SORT_TIME / Math.pow(array.length, 2)));
+            }
+        }
+    }
+}
+
+async function shellSort() {
+    if (sorting) {return}
+    await startSort();
+
+    if (!isSorted()) {
+        await shell_sort();
+    }
+
+    await showSorted();
+    await endSort();
+}
+
+async function shell_sort() {
+    for (let gap = Math.floor(array.length/2); gap > 0; gap = Math.floor(gap/2))	{
+        for (let i = gap; i < array.length; i += 1)  {
+            let temp = array[i];
+			for (let j = i; j >= gap && array[j-gap] > temp; j-=gap)  {
+                swap(j, j-gap, 1);
+			}
+            await delay(SORT_TIME / (array.length * Math.log2(array.length)))
+		}
+	}
 }

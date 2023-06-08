@@ -14,7 +14,7 @@
                     <button onclick="resetArray()">Reset / Randomize</button>
                     <div class="slider-container">
                         <h4>Array Size</h4>
-                        <input type="range" min="7" max="256" value="64" class="slider" id="slider">
+                        <input type="range" min="7" max="256" value="128" class="slider" id="slider">
                         <div id="slider-value">   </div>
                     </div>
                     <div class="rainbow-container">
@@ -33,18 +33,20 @@
                 <div class="slow buttons">
                     <h3>Slow</h3>
                     <button onclick="bubbleSort()">Bubble</button>
+                    <button onclick="insertionSort()">Insertion</button>
                     <button onclick="cocktailSort()">Cocktail</button>
                 </div>
                 <div class="medium buttons">
                     <h3>Medium</h3>
-                    <button onclick="insertionSort()">Insertion</button>
+                    <button onclick="shellSort()">Shell</button>
                     <button onclick="selectionSort()">Selection</button>
-                    
+                    <button onclick="mergeSort()">Merge</button>
                 </div>
                 <div class="fast buttons">
                     <h3>Fast</h3>
-                    <button onclick="mergeSort()">Merge</button>
                     <button onclick="quickSort()">Quick</button>
+                    <button onclick="bucketSort()">Bucket</button>
+                    <button onclick="radixSort()">Radix</button>
                 </div>
             </div>
 
