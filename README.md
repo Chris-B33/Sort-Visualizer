@@ -1,3 +1,11 @@
 # Sorting Algorithm Visualizer
-## Preview
-https://htmlpreview.github.io/?https://github.com/Chris-B33/sort-visualizer/blob/main/index.html
+Contains 9 sorting algorithms:
+- Bubble Sort
+- Cocktail Sort
+- Insertion Sort
+- Shell Sort
+- Selection Sort
+- Merge Sort
+- Quick Sort
+- Bucket Sort
+- Radix Sort
