@@ -1,7 +1,7 @@
 //// VARIABLES ////
 const SORT_TIME = 10000;
-const SOUND_UPPER_BOUND = 600;
-const SOUND_LOWER_BOUND = 200;
+const SOUND_UPPER_BOUND = 1500;
+const SOUND_LOWER_BOUND = 100;
 
 var canvas = document.getElementById("screen");
 var ctx = canvas.getContext("2d");
@@ -15,9 +15,14 @@ var pipe_switch = document.getElementById("pipe-switch");
 var pipe = new Audio('pipe.mp3');
 
 const audioCtx = new AudioContext();
+var volume = audioCtx.createGain();
+volume.gain.value = 0.05;
+
 const oscillator = audioCtx.createOscillator();
 oscillator.type = "triangle";
-oscillator.connect(audioCtx.destination);
+
+oscillator.connect(volume);
+volume.connect(audioCtx.destination);
 
 var cWidth  = ctx.canvas.width  = window.innerWidth;
 var cHeight = ctx.canvas.height = Math.floor(window.innerHeight / 2);
@@ -66,7 +71,7 @@ function drawCurrentArray() {
         switch (states[i]) {
             case 0: 
             case 1:
-                playSound(Math.floor(i * 5));
+                playSound(Math.floor(array[i]));
                 break;
         }
 
@@ -162,7 +167,7 @@ slider.onchange = function() {
 //// SORTING ALGORITHMS ////
 async function startSort() {
     sorting = true;
-    oscillator.connect(audioCtx.destination);
+    volume.connect(audioCtx.destination);
     for (let i=0; i<states.length; i++) {
         states[i] = -1;
     }
@@ -177,7 +182,7 @@ async function showSorted() {
 
 async function endSort() {
     sorting = false;
-    oscillator.disconnect(audioCtx.destination);
+    volume.disconnect(audioCtx.destination);
 }
 
 async function resetArray() {
