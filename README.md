@@ -1,10 +1,10 @@
 # Sorting Algorithm Visualizer
-### Slow Sorts
+## Slow Sorts
 - Bubble Sort
 - Cocktail Sort
 - Insertion Sort
 
-### Faster Sorts
+## Faster Sorts
 - Shell Sort
 - Selection Sort
 - Merge Sort
