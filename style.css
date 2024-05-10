@@ -25,19 +25,8 @@ button:hover {
   padding-bottom: 3rem;
 }
 
-.slow {
-  background-color: rgb(255, 53, 53);
-}
-
-.medium {
-  background-color: rgb(255, 255, 68);
-}
-
-.fast {
-  background-color: rgb(117, 255, 117);
-}
-
-.buttons {
+.button-container {
+  background-color: rgb(232, 242, 245);
   border-radius: 2rem;
   padding: 1rem;
   margin: 1rem;
