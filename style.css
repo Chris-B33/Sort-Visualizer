@@ -67,7 +67,7 @@ h5 {
   margin-bottom: 3rem;
 }
 
-.slider-container {
+.slider-container, .speed-container {
   font-family: "Courier";
   width: 100%;
   display: flex;

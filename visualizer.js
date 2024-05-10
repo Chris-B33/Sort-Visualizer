@@ -20,7 +20,6 @@ volume.gain.value = 0.05;
 
 const oscillator = audioCtx.createOscillator();
 oscillator.type = "triangle";
-
 oscillator.connect(volume);
 volume.connect(audioCtx.destination);
 
@@ -189,12 +188,35 @@ async function resetArray() {
     if (sorting) {return}
     await startSort();
 
+    for (let i=0; i<array.length; i++) {
+        states[i] = 0;
+        array[i] = i+1;
+        await delay(1);
+        states[i] = -1;
+    }
+
+    await endSort(); 
+}
+
+async function randomizeArray() {
+    if (sorting) {return}
+    await startSort();
+
     var randomNum;
     for (let i=0; i<array.length; i++) {
         randomNum = Math.floor((Math.random() * array.length));
         selected = randomNum;
         await swap(i, randomNum, Math.floor(SORT_TIME / Math.pow(array.length, 2)));
     }
+
+    await endSort(); 
+}
+
+async function reverseArray() {
+    if (sorting) {return}
+    await startSort();
+
+    flip(0, array.length);
 
     await endSort(); 
 }
@@ -262,10 +284,12 @@ async function selectionSort() {
     {
         let min_idx = i;
         for (let j = i + 1; j < array.length; j++) {
+            states[j] = 0;
             if (array[j] < array[min_idx]) {
                 min_idx = j;
                 await delay(1);
             }
+            states[j] = -1;
         }
 
         if (min_idx != i) {
@@ -302,8 +326,10 @@ async function quick_sort(start, end) {
   
   async function partition(start, end) {
     let pivotValue = array[end];
+
     let pivotIndex = start;
     states[pivotIndex] = 0;
+
     for (let i = start; i < end; i++) {
       if (array[i] < pivotValue) {
         await swap(i, pivotIndex, Math.floor(SORT_TIME / (array.length * Math.log2(array.length))));
@@ -348,8 +374,7 @@ async function merge_sort(start, end) {
 }
 
 async function merge_arrays(start, middle, end) {
-    var left = [];
-    var right = [];
+    var left = [], right = [];
     for (let i = start; i <= middle; i++) {
         left.push(array[i]);
     }
@@ -438,8 +463,8 @@ async function bucketSort() {
 }
   
 async function bucket_sort(bs) {
-    var minIndex = array[0];
-    var maxIndex = array[0];
+    var minIndex = 0;
+    var maxIndex = 0;
     var bucketSize = bs || 5;
 
     for (let i=0; i<array.length; i++) {
@@ -450,9 +475,10 @@ async function bucket_sort(bs) {
         if (array[i] < array[minIndex]) {
             states[minIndex] = -1;
             minIndex = i;
-        } else if (array[i] > array[maxIndex]) {
+        }
+        if (array[i] > array[maxIndex]) {
             states[maxIndex] = -1;
-            maxIndex = i
+            maxIndex = i;
         }
         
         await delay(1);
@@ -461,7 +487,7 @@ async function bucket_sort(bs) {
         states[minIndex] = -1;
         states[maxIndex] = -1;
     }
-  
+
     var bucketCount = Math.floor((array[maxIndex] - array[minIndex]) / bucketSize) + 1;
     var allBuckets = new Array(bucketCount);
     
@@ -527,4 +553,89 @@ async function shell_sort() {
             await delay(SORT_TIME / (array.length * Math.log2(array.length)))
 		}
 	}
+}
+
+async function pancakeSort() {
+    if (sorting) {return}
+    await startSort();
+
+    if (!isSorted()) {
+        await pancake_sort();
+    }
+
+    await showSorted();
+    await endSort();
+}
+
+async function pancake_sort() {
+    for (let curr_size = array.length - 1; curr_size > 1; curr_size--) {
+        let mi = await findMax(0, curr_size + 1);
+        await flip(0, mi + 1);
+        await flip(0, curr_size + 1);
+    }
+}
+
+async function flip(start, end) {
+    for (let i=0; i<Math.floor((end-start) / 2); i++) {
+        await swap(start + i, end - i - 1, Math.floor(SORT_TIME / Math.pow(array.length, 2)));
+    }
+}
+
+async function findMax(start, end) {
+    let i, mi;
+    for (i = start, mi = start; i < end; i++) {
+        if (array[i] > array[mi]) {
+            mi = i;
+        }
+    }   
+    return mi;
+}
+
+async function heapSort() {
+    if (sorting) {return}
+    await startSort();
+
+    if (!isSorted()) {
+        await heap_sort();
+    }
+
+    await showSorted();
+    await endSort();
+}
+
+async function heap_sort() {
+    // Build heap (rearrange array)
+    for (var i = Math.floor(array.length / 2) - 1; i >= 0; i--)
+        await heapify(array.length, i);
+
+    // One by one extract an element from heap
+    for (var i = array.length - 1; i > 0; i--) {
+        // Move current root to end
+        await swap(0, i, SORT_TIME / (array.length * array.length));
+
+        // call max heapify on the reduced heap
+        await heapify(i, 0);
+    }
+}
+
+async function heapify(n, i) {
+    var largest = i; // Initialize largest as root
+    var l = 2 * i + 1; // left child index = 2*i + 1
+    var r = 2 * i + 2; // right child index = 2*i + 2
+
+    // If left child is larger than root
+    if (l < n && array[l] > array[largest])
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < n && array[r] > array[largest])
+        largest = r;
+
+    // If largest is not root
+    if (largest != i) {
+        await swap(largest, i, SORT_TIME / (array.length * array.length));
+
+        // Recursively heapify the affected sub-tree
+        await heapify(n, largest);
+    }
 }
