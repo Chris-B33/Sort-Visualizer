@@ -3,6 +3,7 @@
 - Bubble Sort
 - Cocktail Sort
 - Insertion Sort
+- Pancake Sort
 
 ## Faster Sorts
 - Shell Sort
@@ -13,3 +14,4 @@
 - Quick Sort
 - Bucket Sort
 - Radix Sort
+- Heap Sort
