@@ -8,9 +8,9 @@
 ## Description
 
 This application shows a way to visualize different sorting algorithms.
-It is written in native JavaScript, no additional libraries were used.
-I wanted to make this project after seeing many videos online about visualizing different sorting algorithms and I wanted to make my own version.
-"In-place" algorithms like Bubble and Insertion sort were quite trivial to implemement. Any algorithm fully composed of only swapping two elements at a time was easy.
+It is written in native JavaScript, no additional libraries were used.<br>
+I wanted to make this project after seeing many videos online about visualizing different sorting algorithms and I wanted to make my own version.<br>
+"In-place" algorithms like Bubble and Insertion Sort were quite trivial to implemement.<br>
 However, "Divide and Conquer" algorithms such as Merge Sort, where we have to keep track of sub-arrays were more difficult as keeping the position of the elements in the overall array was complicated.
 
 ## Implemented Algorithms
