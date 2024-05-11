@@ -14,7 +14,7 @@ I wanted to make this project after seeing many videos online about visualizing 
 However, "Divide and Conquer" algorithms such as Merge Sort, where we have to keep track of sub-arrays were more difficult as keeping the position of the elements in the overall array was complicated.
 
 ## Implemented Algorithms
-[![algorithms.png](https://i.postimg.cc/0ycV7W3S/algorithms.png)](https://postimg.cc/Hr80g2TW)
+[![algorithms.png](https://i.postimg.cc/SRQQ8vRZ/algorithms.png)](https://postimg.cc/346HQ9gp)
 
 ## Installation
 
