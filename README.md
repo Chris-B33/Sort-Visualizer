@@ -20,3 +20,5 @@ However, "Divide and Conquer" algorithms such as Merge Sort, where we have to ke
 
 It is not required to download this repository to run the application. 
 Opening <a href="https://htmlpreview.github.io/?https://github.com/Chris-B33/sort-visualizer/blob/main/index.html">this link</a> will bring you to a HTML preview through Github to run it.
+<br>
+However, if you want to use it offline, download as a zip or clone the repository. You can then open index.html to play.
