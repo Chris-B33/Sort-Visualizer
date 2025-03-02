@@ -20,7 +20,7 @@ button:hover {
 .container {
   text-align: center;
   width: 100%;
-  height: 96%;
+  height: 86%;
   margin-top: 2%;
   padding-bottom: 3rem;
 }
@@ -56,9 +56,13 @@ h5 {
   margin-bottom: 3rem;
 }
 
-.slider-container, .speed-container {
+.table-container {
+  margin: 1.5rem;
+}
+
+.slider-container, .speed-container, .table-container {
   font-family: "Courier";
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,6 +98,44 @@ h5 {
   height: 25px;
   background: #04AA6D;
   cursor: pointer;
+}
+
+#table-information {
+  column-gap: 5rem;
+}
+
+#table-information td, #table-information th {
+  width: 25rem;
+}
+
+.worst-case-ip, .average-case-ip, .best-case-ip, .sort-ip-title {
+  font-size: 2rem;
+  text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+}
+
+.worst-case-ip {
+  color: red;
+}
+
+.average-case-ip {
+  color: yellow;
+}
+
+.best-case-ip {
+  color: lightgreen;
+}
+
+.sort-ip-title {
+  font-size: 2.1rem;
+  color: lightgray;
+}
+
+.ip-hidden {
+  display: None;
 }
 
 #slider-value {

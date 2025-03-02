@@ -8,7 +8,6 @@
     <body>
         <div class="container">
             <h1>Chris' Sorting Visualizer</h1>
-            <p>To highlight the efficiency (and inefficiency) of different sorting algorithms</p>
             <div class="interact-container">
                 <div class="misc-area">
                     <button onclick="resetArray()">Reset</button>
@@ -50,6 +49,173 @@
 
             <div class="screen-container">
                 <canvas id="screen"></canvas>
+            </div>
+
+            <div class="table-container">
+                <table id="table-information">
+                    <tr class="initial-ip">
+                        <th colspan="3">Try an algorithm!</th>
+                    </tr>
+                    <tr class="bubble-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Bubble Sort</th>
+                    </tr>
+                    <tr class="bubble-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an in-place sorting algorithm that iterates through the list and swaps adjacent elements 
+                            if they are in the wrong order, passing through the list until all elements are sorted.
+                        </th>
+                    </tr>
+                    <tr class="insertion-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Insertion Sort</th>
+                    </tr>
+                    <tr class="insertion-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an in-place sorting algorithm that builds a sorted array one element at
+                            a time by extending the sorted size and placing the next element in its correct position.
+                        </th>
+                    </tr>
+                    <tr class="selection-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Selection Sort</th>
+                    </tr>
+                    <tr class="selection-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an in-place sorting algorithm that repeatedly finds the smallest element from
+                            the unsorted portion of the list and swaps it with the first unsorted element.
+                        </th>
+                    </tr>
+                    <tr class="cocktail-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Cocktail Sort</th>
+                    </tr>
+                    <tr class="cocktail-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is a  variation of Bubble Sort that sorts in both directions, moving largest 
+                            elements to the end and smallest elements to the beginning in alternating passes.
+                        </th>
+                    </tr>
+                    <tr class="pancake-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Pancake Sort</th>
+                    </tr>
+                    <tr class="pancake-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an in-place sorting algorithm that sorts a list using a sequence of prefix reversals (flips), 
+                            where the largest unsorted element is moved to its correct position by flipping subarrays from the start of the list.
+                        </th>
+                    </tr>
+                    <tr class="shell-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Shell Sort</th>
+                    </tr>
+                    <tr class="shell-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an in-place sorting algorithm that improves Insertion Sort by first sorting elements far apart, 
+                            then reducing the gap until the list is fully sorted.
+                        </th>
+                    </tr>
+                    <tr class="quick-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Quick Sort</th>
+                    </tr>
+                    <tr class="quick-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an in-place, divide-and-conquer sorting algorithm that selects a pivot, partitions the array 
+                            into elements smaller and larger than the pivot, and recursively sorts both parts.
+                        </th>
+                    </tr>
+                    <tr class="merge-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Merge Sort</th>
+                    </tr>
+                    <tr class="merge-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an stable, divide-and-conquer sorting algorithm that recursively splits the array into smaller 
+                            subarrays, sorts them, and then merges them back together.
+                        </th>
+                    </tr>
+                    <tr class="heap-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Heap Sort</th>
+                    </tr>
+                    <tr class="heap-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an in-place sorting algorithm that uses a binary heap data structure to build a max-heap, repeatedly 
+                            extracting the largest element and placing it in the sorted part of the array.
+                        </th>
+                    </tr>
+                    <tr class="bucket-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Bucket Sort</th>
+                    </tr>
+                    <tr class="bucket-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an non-comparative, in-place sorting algorithm that divides the input into several equally spaced "buckets," 
+                            sorts each bucket individually and then combines them again.
+                        </th>
+                    </tr>
+                    <tr class="radix-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-title">Radix Sort</th>
+                    </tr>
+                    <tr class="radix-ip ip-hidden">
+                        <th colspan="3" class="sort-ip-paragraph">
+                            This is an non-comparative, in-place sorting algorithm that sorts numbers digit by digit, starting from the least 
+                            significant digit and progressing to the most significant digit.
+                        </th>
+                    </tr>
+                    <tr class="table-heading ip-hidden">
+                        <th class="best-case-ip">Best Case</th>
+                        <th class="average-case-ip">Average Case</th>
+                        <th class="worst-case-ip">Worst Case</th>
+                    </tr>
+                    <tr class="bubble-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N)</td>
+                        <td class="average-case-ip">θ(N²)</td>
+                        <td class="worst-case-ip">O(N²)</td>
+                    </tr>
+                    <tr class="insertion-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N)</td>
+                        <td class="average-case-ip">θ(N²)</td>
+                        <td class="worst-case-ip">O(N²)</td>
+                    </tr>
+                    <tr class="selection-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N²)</td>
+                        <td class="average-case-ip">θ(N²)</td>
+                        <td class="worst-case-ip">O(N²)</td>
+                    </tr>
+                    <tr class="cocktail-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N²)</td>
+                        <td class="average-case-ip">θ(N²)</td>
+                        <td class="worst-case-ip">O(N²)</td>
+                    </tr>
+                    <tr class="pancake-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N²)</td>
+                        <td class="average-case-ip">θ(N²)</td>
+                        <td class="worst-case-ip">O(N²)</td>
+                    </tr>
+                    <tr class="shell-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N log(N))</td>
+                        <td class="average-case-ip">θ(N log²(N))</td>
+                        <td class="worst-case-ip">O(N log²(N))</td>
+                    </tr>
+                    <tr class="quick-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N log(N))</td>
+                        <td class="average-case-ip">θ(N log(N))</td>
+                        <td class="worst-case-ip">O(N²)</td>
+                    </tr>
+                    <tr class="merge-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N log(N))</td>
+                        <td class="average-case-ip">θ(N log(N))</td>
+                        <td class="worst-case-ip">O(N log(N))</td>
+                    </tr>
+                    <tr class="heap-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N log(N))</td>
+                        <td class="average-case-ip">θ(N log(N))</td>
+                        <td class="worst-case-ip">O(N log(N))</td>
+                    </tr>
+                    <tr class="bucket-ip ip-hidden">
+                        <td class="best-case-ip">Ω(N+K)</td>
+                        <td class="average-case-ip">θ(N+K)</td>
+                        <td class="worst-case-ip">O(N²)</td>
+                    </tr>
+                    <tr class="radix-ip ip-hidden">
+                        <td class="best-case-ip">Ω(NK)</td>
+                        <td class="average-case-ip">θ(NK)</td>
+                        <td class="worst-case-ip">O(NK)</td>
+                    </tr>
+                </table>
             </div>
         </div>
         <script src="visualizer.js"></script>

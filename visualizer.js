@@ -172,6 +172,18 @@ async function startSort() {
     }
 }
 
+async function updateInfo(sort_name) {
+    let ip_name = sort_name + "-ip";
+    let table = document.getElementById("table-information");
+    for (let i = 0; i < table.rows.length; i++) { 
+         if (table.rows[i].classList.contains(ip_name) || table.rows[i].classList.contains("table-heading")) {
+            table.rows[i].classList.remove("ip-hidden");
+         } else {
+            table.rows[i].classList.add("ip-hidden");
+         }
+    }
+}
+
 async function showSorted() {
     for (let i=0; i<states.length; i++) {
         states[i] = 1;
@@ -224,6 +236,7 @@ async function reverseArray() {
 async function bubbleSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("bubble");
 
     for (let i=0; i<array.length; i++) {
         for (let j=0; j<array.length-1; j++) {
@@ -240,6 +253,7 @@ async function bubbleSort() {
 async function insertionSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("insertion");
 
     for (let i=0; i<array.length; i++) {
         for (let j=0; j<i; j++) {
@@ -257,6 +271,7 @@ async function insertionSort() {
 async function cocktailSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("cocktail");
 
     for (let i=0; i<array.length; i++) {
         for (let j=0; j<array.length-1; j++) {
@@ -279,6 +294,7 @@ async function cocktailSort() {
 async function selectionSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("selection");
  
     for (let i = 0; i < array.length; i++)
     {
@@ -304,6 +320,7 @@ async function selectionSort() {
 async function quickSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("quick");
 
     if (!isSorted()) {
         await quick_sort(0, array.length - 1)
@@ -351,6 +368,7 @@ async function quick_sort(start, end) {
 async function mergeSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("merge");
 
     if (!isSorted()) {
         await merge_sort(0, array.length - 1);
@@ -405,6 +423,7 @@ async function merge_arrays(start, middle, end) {
 async function radixSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("radix");
 
     if (!isSorted()) {
         await radix_sort();
@@ -453,6 +472,7 @@ function getDigit(num, place) {
 async function bucketSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("bucket");
 
     if (!isSorted()) {
         await bucket_sort(Math.floor(Math.sqrt(array.length)));
@@ -534,6 +554,7 @@ async function insertionSort2(start, end) {
 async function shellSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("shell");
 
     if (!isSorted()) {
         await shell_sort();
@@ -558,6 +579,7 @@ async function shell_sort() {
 async function pancakeSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("pancake");
 
     if (!isSorted()) {
         await pancake_sort();
@@ -594,6 +616,7 @@ async function findMax(start, end) {
 async function heapSort() {
     if (sorting) {return}
     await startSort();
+    await updateInfo("heap");
 
     if (!isSorted()) {
         await heap_sort();
