@@ -11,9 +11,6 @@ var slider_value = document.getElementById("slider-value");
 
 var rainbow_switch = document.getElementById("rainbow-switch");
 
-var pipe_switch = document.getElementById("pipe-switch");
-var pipe = new Audio('pipe.mp3');
-
 const audioCtx = new AudioContext();
 var volume = audioCtx.createGain();
 volume.gain.value = 0.05;
@@ -26,7 +23,7 @@ volume.connect(audioCtx.destination);
 var cWidth  = ctx.canvas.width  = window.innerWidth;
 var cHeight = ctx.canvas.height = Math.floor(window.innerHeight / 2);
 
-var array   = [];
+var array = [];
 var states = [];
 var rainbow_vals = [];
 createArray(128);
@@ -107,9 +104,7 @@ async function swap(pos1, pos2, del) {
 
 function playSound(hz) {
     let hertz = parseFloat(hz);
-    if (pipe_switch.checked) {
-        pipe.cloneNode().play();
-    } else if (isFinite(hertz)) {
+    if (isFinite(hertz)) {
         let interval = (SOUND_UPPER_BOUND - SOUND_LOWER_BOUND) / array.length;
         hertz = SOUND_LOWER_BOUND + (hertz * interval);
         oscillator.frequency.setValueAtTime(hertz, audioCtx.currentTime);
@@ -175,12 +170,22 @@ async function startSort() {
 async function updateInfo(sort_name) {
     let ip_name = sort_name + "-ip";
     let table = document.getElementById("table-information");
+
     for (let i = 0; i < table.rows.length; i++) { 
-         if (table.rows[i].classList.contains(ip_name) || table.rows[i].classList.contains("table-heading")) {
-            table.rows[i].classList.remove("ip-hidden");
-         } else {
+        if (table.rows[i].classList.contains(ip_name) || table.rows[i].classList.contains("table-heading")) {
+            setTimeout(() => {
+                table.rows[i].style.display = "table-row";
+                table.rows[i].classList.add("ip-shown");
+                table.rows[i].classList.remove("ip-hidden");
+            }, 500);
+        } else {
             table.rows[i].classList.add("ip-hidden");
-         }
+            table.rows[i].classList.remove("ip-shown");
+
+            setTimeout(() => {
+                table.rows[i].style.display = "none";
+            }, 500);
+        }
     }
 }
 

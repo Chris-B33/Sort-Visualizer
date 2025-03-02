@@ -19,10 +19,6 @@ button:hover {
 
 .container {
   text-align: center;
-  width: 100%;
-  height: 86%;
-  margin-top: 2%;
-  padding-bottom: 3rem;
 }
 
 .button-container {
@@ -36,7 +32,7 @@ button:hover {
   margin-right: 1rem;
 }
 
-.rainbow-container, .pipe-container {
+.rainbow-container {
   display: flex;
   justify-content: center;
 }
@@ -53,16 +49,11 @@ h5 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 3rem;
-}
-
-.table-container {
-  margin: 1.5rem;
 }
 
 .slider-container, .speed-container, .table-container {
   font-family: "Courier";
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +100,7 @@ h5 {
 }
 
 .worst-case-ip, .average-case-ip, .best-case-ip, .sort-ip-title {
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-shadow:
   -1px -1px 0 #000,
   1px -1px 0 #000,
@@ -130,15 +121,24 @@ h5 {
 }
 
 .sort-ip-title {
-  font-size: 2.1rem;
+  font-size: 2rem;
   color: lightgray;
 }
 
 .ip-hidden {
-  display: None;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.ip-shown {
+  opacity: 1;
+  max-height: 100%;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
 }
 
 #slider-value {
   min-width: 1rem;
-  max-width:1rem;;
+  max-width:1rem;
 }
