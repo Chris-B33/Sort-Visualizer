@@ -1,8 +1,6 @@
 # Sorting Algorithm Visualizer
 
 <a href="https://htmlpreview.github.io/?https://github.com/Chris-B33/sort-visualizer/blob/main/index.html"><img alt="Static Badge" src="https://img.shields.io/badge/Preview-Application"></a>
-<img alt="GitHub forks" src="https://img.shields.io/github/forks/Chris-B33/sort-visualizer">
-<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Chris-B33/sort-visualizer">
 
 ## Description
 
